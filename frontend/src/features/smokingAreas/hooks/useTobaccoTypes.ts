@@ -22,9 +22,14 @@ export const useTobaccoTypes = (): UseTobaccoTypesResult => {
     }
   };
 
+  /* eslint-disable react-hooks/set-state-in-effect */
+  // 初回マウント時に一度だけデータを取得する。
+  // refetch内のloading遷移はレンダー内計算で再現できず、useEffectの正当な用途。
+  // 機能拡張時に TanStack Query を採用し、loading遷移・タバコ種別取得・キャッシュ管理を委譲する設計に変更するかを検討。
   useEffect(() => {
     refetch();
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return { state, refetch };
 };
