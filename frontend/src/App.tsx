@@ -25,7 +25,7 @@ export default function App() {
 
   return (
     <SmokingAreasMap
-      state={state}
+      smokingAreasState={state}
       selectedId={selectedId}
       setSelectedId={setSelectedId}
       params={params}

@@ -7,7 +7,7 @@ import type { SmokingAreaDisplay, SmokingAreaSearchParams } from "./features/smo
 import type { FetchState } from "./types/fetchState";
 
 type SmokingAreasMapProps = {
-  state: FetchState<SmokingAreaDisplay[]>;
+  smokingAreasState: FetchState<SmokingAreaDisplay[]>;
   selectedId: number | null;
   setSelectedId: (id: number | null) => void;
   params: SmokingAreaSearchParams
@@ -33,7 +33,7 @@ const CurrentLocationHandler = ({ position }: { position: { lat: number, lng: nu
   );
 };
 
-export const SmokingAreasMap = ({ state, selectedId, setSelectedId, params, setParams, refetchSmokingAreas }: SmokingAreasMapProps) => {
+export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, params, setParams, refetchSmokingAreas }: SmokingAreasMapProps) => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const mapId = import.meta.env.VITE_GOOGLE_MAPS_MAP_ID;
 
