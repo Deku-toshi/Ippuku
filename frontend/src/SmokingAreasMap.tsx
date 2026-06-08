@@ -74,8 +74,8 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
 
   const getSelectedSmokingArea = (): SmokingAreaDisplay | null => {
     if (selectedId === null) return null;
-    if (state.status !== "success") return null;
-    return state.data.find((smokingArea) => smokingArea.id === selectedId) ?? null;
+    if (smokingAreasState.status !== "success") return null;
+    return smokingAreasState.data.find((smokingArea) => smokingArea.id === selectedId) ?? null;
   };
 
   const toggleFullscreen = () => {
@@ -94,11 +94,13 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
 
   const selectedSmokingArea = getSelectedSmokingArea();
 
-  const selectedTobaccoTypeIds = selectedSmokingArea?.tobaccoTypeIds ?? []
-  const selectedTobaccoTypes = tobaccoTypes.filter((tobaccoType) => selectedTobaccoTypeIds.includes(tobaccoType.id))
+  const selectedTobaccoTypeIds = selectedSmokingArea?.tobaccoTypeIds ?? [];
+  const selectedTobaccoTypes = tobaccoTypesState.status === "success" ? tobaccoTypesState.data
+                               .filter((tobaccoType) => selectedTobaccoTypeIds
+                               .includes(tobaccoType.id))
                                .sort((a, b) => a.displayOrder - b.displayOrder)
                                .map((tobaccoType) => tobaccoType.name)
-                               .join(", ");
+                               .join(", ") : "";
 
   const defaultCenter = { lat: 35.6812, lng: 139.7671 };
 
@@ -126,7 +128,7 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
           onClick={() => setSelectedId(null)}>
           <CurrentLocationHandler position={position}/>
           {position && <AdvancedMarker position={position}/>}
-          {state.status === "success" && state.data.map((smokingArea) => {
+          {smokingAreasState.status === "success" && tobaccoTypesState.status === "success" && smokingAreasState.data.map((smokingArea) => {
             const isSelected = selectedId === smokingArea.id;
             return (
               <AdvancedMarker 
