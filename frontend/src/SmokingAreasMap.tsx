@@ -43,7 +43,22 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
-  const { data: tobaccoTypes, refetch: refetchTobaccoTypes } = useTobaccoTypes();
+  const { state: tobaccoTypesState, refetch: refetchTobaccoTypes } = useTobaccoTypes();
+
+  const renderOverlay = () => {
+    if (smokingAreasState.status === "error" || tobaccoTypesState.status === "error") {
+      return (
+        <div className="error-overlay">
+          <p>データの取得に失敗しました</p>
+          <button onClick={() => { refetchSmokingAreas(); refetchTobaccoTypes(); }}>再取得</button>
+        </div>
+      );
+    }
+    if (smokingAreasState.status === "loading" || tobaccoTypesState.status === "loading") {
+      return <div className="loading-overlay">Loading...</div>;
+    }
+    return null;
+  };
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1025);
@@ -95,12 +110,7 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
           {isFullscreen ? <Minimize size={20}/> : <Maximize size={20}/>}
         </button>
       )}
-      {state.status === "loading" && <div className="loading-overlay">Loading...</div>}
-      {state.status === "error" &&
-        <div className="error-overlay">
-          <p>データの取得に失敗しました</p>
-          <button onClick={() => { refetchSmokingAreas(); refetchTobaccoTypes(); }}>再取得</button>
-        </div>}
+      {renderOverlay()}
       <APIProvider apiKey={apiKey} libraries={['marker']}>
         <Map
           defaultCenter={defaultCenter}
