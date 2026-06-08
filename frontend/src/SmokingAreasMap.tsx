@@ -1,5 +1,5 @@
 import { APIProvider, Map, AdvancedMarker, MapControl, ControlPosition, useMap } from "@vis.gl/react-google-maps";
-import { TobaccoTypeFilter } from "./TobaccoTypeFilter"
+import { TobaccoTypeFilter } from "./TobaccoTypeFilter";
 import { useTobaccoTypes } from "./features/smokingAreas/hooks/useTobaccoTypes";
 import { useEffect, useRef, useState } from "react";
 import { LocateFixed, Maximize, Minimize } from "lucide-react";
@@ -10,7 +10,7 @@ type SmokingAreasMapProps = {
   smokingAreasState: FetchState<SmokingAreaDisplay[]>;
   selectedId: number | null;
   setSelectedId: (id: number | null) => void;
-  params: SmokingAreaSearchParams
+  params: SmokingAreaSearchParams;
   setParams: (params: SmokingAreaSearchParams) => void;
   refetchSmokingAreas: () => Promise<void>;
 };
@@ -64,7 +64,7 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
     const handleResize = () => setIsMobile(window.innerWidth < 1025);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [])
+  }, []);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -119,7 +119,7 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
           defaultZoom={16}
           mapId={mapId}
           disableDefaultUI={true}
-          zoomControl={isMobile ? false : true}
+          zoomControl={!isMobile}
           clickableIcons={false}
           keyboardShortcuts={false}
           draggableCursor="default"
@@ -131,8 +131,8 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
           {smokingAreasState.status === "success" && tobaccoTypesState.status === "success" && smokingAreasState.data.map((smokingArea) => {
             const isSelected = selectedId === smokingArea.id;
             return (
-              <AdvancedMarker 
-                key={smokingArea.id} 
+              <AdvancedMarker
+                key={smokingArea.id}
                 position={{ lat: smokingArea.latitude, lng: smokingArea.longitude}}
                 onClick={() => setSelectedId(isSelected ? null : smokingArea.id)}
                 zIndex={isSelected ? 5 : 0}>
