@@ -4,7 +4,7 @@ import { ApiSmokingAreaSchema } from "./schema";
 import type { SmokingAreaDisplay, SmokingAreaSearchParams } from "../../features/smokingAreas/types";
 import type { QueryParams } from "../httpClient";
 
-const buildSmokingAreasQuery = (params?: SmokingAreaSearchParams): QueryParams | undefined => {
+export const buildSmokingAreasQuery = (params?: SmokingAreaSearchParams): QueryParams | undefined => {
   if (!params) return undefined;
 
   const { tobaccoTypeId, electronicOnly } = params;
