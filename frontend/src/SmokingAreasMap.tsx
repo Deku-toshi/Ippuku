@@ -1,5 +1,6 @@
 import { APIProvider, Map, AdvancedMarker, MapControl, ControlPosition, useMap } from "@vis.gl/react-google-maps";
 import { TobaccoTypeFilter } from "./TobaccoTypeFilter";
+import { formatSelectedTobaccoTypes } from "./features/smokingAreas/formatSelectedTobaccoTypes";
 import { useTobaccoTypes } from "./features/smokingAreas/hooks/useTobaccoTypes";
 import { useEffect, useRef, useState } from "react";
 import { LocateFixed, Maximize, Minimize } from "lucide-react";
@@ -95,12 +96,8 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
   const selectedSmokingArea = getSelectedSmokingArea();
 
   const selectedTobaccoTypeIds = selectedSmokingArea?.tobaccoTypeIds ?? [];
-  const selectedTobaccoTypes = tobaccoTypesState.status === "success" ? tobaccoTypesState.data
-                               .filter((tobaccoType) => selectedTobaccoTypeIds
-                               .includes(tobaccoType.id))
-                               .sort((a, b) => a.displayOrder - b.displayOrder)
-                               .map((tobaccoType) => tobaccoType.name)
-                               .join(", ") : "";
+  const selectedTobaccoTypes = tobaccoTypesState.status === "success" ? 
+                               formatSelectedTobaccoTypes(tobaccoTypesState.data, selectedTobaccoTypeIds) : "";
 
   const defaultCenter = { lat: 35.6812, lng: 139.7671 };
 
