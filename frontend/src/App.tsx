@@ -13,7 +13,6 @@ export default function App() {
   // フィルター後のデータに選択中の喫煙所が含まれなければ選択状態を解除する。
   // これによりフィルター解除時に選択状態が復活しない。
   // レンダー内計算だと解除時に selectedId が残り選択状態が復活するため、意図的に Effect 内で更新。
-  // 機能拡張時に TanStack Query を採用し、サーバーサイドでフィルター後の状態を管理する設計に変更するかを検討。
   // selectedId の変化には反応不要のため依存配列から除外。
   useEffect(() => {
     if (selectedId === null) return;
