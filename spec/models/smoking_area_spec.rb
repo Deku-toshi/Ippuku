@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe SmokingArea, type: :model do
   describe "validations" do
-    let!(:paper) { create(:tobacco_type, :paper) }
-    let!(:electronic) { create(:tobacco_type, :electronic)}
+    before do
+      create(:tobacco_type, :paper)
+      create(:tobacco_type, :electronic)
+    end
 
     it "is valid with default attributes" do
       smoking_area = build(:smoking_area)
