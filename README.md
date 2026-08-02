@@ -107,22 +107,35 @@ zodは型が存在しないRailsから取得したデータが意図している
 
 ![ER図](docs/images/er-diagram.png)
 
+## ディレクトリ構成
+
+リポジトリのルートがRails API（APIモード）のルートを兼ねています。
+
+```
+Ippuku/
+├── app/        # Rails: モデル・コントローラ
+├── config/     # Rails: ルーティング・CORS・環境設定
+├── spec/       # Rails: RSpec
+├── Gemfile     # Rails: 依存管理
+└── frontend/   # React + TypeScript（Vite）
+```
+
 ## ローカル環境での立ち上げ方法
 
 ### リポジトリのクローン
 ```bash
-git clone https://github.com/Deku-toshi/smoking_area_map_api.git
-cd smoking_area_map_api
+git clone https://github.com/Deku-toshi/Ippuku.git
+cd Ippuku
 ```
 
 ### 環境変数の設定
 
-**バックエンド**（`smoking_area_map_api/.env.local`）
+**バックエンド**（`Ippuku/.env.local`）
 ```bash
 DATABASE_PASSWORD=<任意のパスワードを入れてください>
 ```
 
-**フロントエンド**（`smoking_area_map_api/frontend/.env.local`）
+**フロントエンド**（`Ippuku/frontend/.env.local`）
 ```bash
 VITE_GOOGLE_MAPS_API_KEY=<取得したGoogleMapsAPIキーを入れてください>
 VITE_GOOGLE_MAPS_MAP_ID=<取得したMapIDを入れてください>
@@ -130,7 +143,7 @@ VITE_GOOGLE_MAPS_MAP_ID=<取得したMapIDを入れてください>
 
 ### Rails API（バックエンド）
 ```bash
-cd smoking_area_map_api
+cd Ippuku
 bundle install
 rails db:create db:migrate
 rails db:seed
@@ -139,7 +152,7 @@ rails s
 
 ### フロントエンド
 ```bash
-cd smoking_area_map_api/frontend
+cd Ippuku/frontend
 npm install
 npm run dev
 ```
