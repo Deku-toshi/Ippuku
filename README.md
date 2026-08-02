@@ -107,6 +107,19 @@ zodは型が存在しないRailsから取得したデータが意図している
 
 ![ER図](docs/images/er-diagram.png)
 
+## ディレクトリ構成
+
+リポジトリのルートがRails API（APIモード）のルートを兼ねています。
+
+```
+Ippuku/
+├── app/        # Rails: モデル・コントローラ
+├── config/     # Rails: ルーティング・CORS・環境設定
+├── spec/       # Rails: RSpec
+├── Gemfile     # Rails: 依存管理
+└── frontend/   # React + TypeScript（Vite）
+```
+
 ## ローカル環境での立ち上げ方法
 
 ### リポジトリのクローン
