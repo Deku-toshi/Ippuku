@@ -192,18 +192,21 @@ VITE_GOOGLE_MAPS_MAP_ID=<取得したMapIDを入れてください>
 ```
 
 ### Rails API（バックエンド）
+
+リポジトリのルート（`Ippuku`）で実行します。
+
 ```bash
-cd Ippuku
 bundle install
-rails db:create db:migrate
-rails db:seed
-rails s
+bin/rails db:prepare
+bin/rails s
 ```
 
 ### フロントエンド
+
+`Ippuku/frontend` で実行します。
+
 ```bash
-cd Ippuku/frontend
-npm install
+npm ci
 npm run dev
 ```
 
