@@ -179,9 +179,10 @@ APIキーはブラウザから参照できる形で読み込まれるため、�
 
 ### 環境変数の設定
 
-**バックエンド**（`Ippuku/.env.local`）
+**バックエンド**（`Ippuku/.env`）
 ```bash
-DATABASE_PASSWORD=<任意のパスワードを入れてください>
+DATABASE_USERNAME=<PostgreSQLの準備で作成したユーザー名>
+DATABASE_PASSWORD=<PostgreSQLの準備で設定したパスワード>
 ```
 
 **フロントエンド**（`Ippuku/frontend/.env.local`）
