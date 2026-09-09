@@ -121,6 +121,17 @@ Ippuku/
 
 ## ローカル環境での立ち上げ方法
 
+### 前提環境
+
+以下の環境で動作を確認しています。
+
+| 項目 | バージョン |
+| :----- | :---- |
+| OS | Ubuntu 24.04.2（WSL2） |
+| Bundler | 2.5.3 |
+| Node.js | 22.21.1 |
+| npm | 10.9.4 |
+
 ### リポジトリのクローン
 ```bash
 git clone https://github.com/Deku-toshi/Ippuku.git
