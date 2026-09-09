@@ -121,17 +121,68 @@ Ippuku/
 
 ## ローカル環境での立ち上げ方法
 
+### 前提環境
+
+以下の環境で動作を確認しています。
+
+| 項目 | バージョン |
+| :----- | :---- |
+| OS | Ubuntu 24.04.2（WSL2） |
+| Bundler | 2.5.3 |
+| Node.js | 22.21.1 |
+| npm | 10.9.4 |
+
 ### リポジトリのクローン
 ```bash
 git clone https://github.com/Deku-toshi/Ippuku.git
 cd Ippuku
 ```
 
+### PostgreSQLの準備
+
+未導入の場合はインストールします。`libpq-dev` は pg gem のビルドに必要です。
+
+```bash
+sudo apt install postgresql libpq-dev
+```
+
+PostgreSQLを起動します。
+
+```bash
+sudo service postgresql start
+```
+
+アプリが接続するロールを作成します。データベースの作成権限が必要なため `--createdb` を付けています。実行するとパスワードの入力を求められます。
+
+```bash
+sudo -u postgres createuser --createdb --pwprompt <任意のユーザー名>
+```
+
+ここで指定したユーザー名とパスワードを、次の環境変数の設定で使用します。
+
+### Google Maps APIキーとMap IDの取得
+
+地図の表示に Google Maps Platform を使用しています。以下を各自で取得してください。
+
+- Google Cloud プロジェクトを作成する
+- Maps JavaScript API を有効化しAPIキーを発行する
+- Map ID を作成する
+
+マーカーの表示に Map ID が必要です。ベクターマップで動作を確認しています。
+
+APIキーはブラウザから参照できる形で読み込まれるため、ウェブサイトの制限をかけてください。
+登録するURLは、フロントエンドを起動したアドレスに合わせてください。
+
+- [プロジェクトの作成] https://console.cloud.google.com/projectcreate
+- [Maps JavaScript API を有効化しAPIキーを発行] https://console.cloud.google.com/apis/library/maps-backend.googleapis.com
+- [Map ID の作成] https://console.cloud.google.com/projectselector2/google/maps-apis/studio/maps?organizationId=0&supportedpurview=project
+
 ### 環境変数の設定
 
-**バックエンド**（`Ippuku/.env.local`）
+**バックエンド**（`Ippuku/.env`）
 ```bash
-DATABASE_PASSWORD=<任意のパスワードを入れてください>
+DATABASE_USERNAME=<PostgreSQLの準備で作成したユーザー名>
+DATABASE_PASSWORD=<PostgreSQLの準備で設定したパスワード>
 ```
 
 **フロントエンド**（`Ippuku/frontend/.env.local`）
@@ -141,18 +192,21 @@ VITE_GOOGLE_MAPS_MAP_ID=<取得したMapIDを入れてください>
 ```
 
 ### Rails API（バックエンド）
+
+リポジトリのルート（`Ippuku`）で実行します。
+
 ```bash
-cd Ippuku
 bundle install
-rails db:create db:migrate
-rails db:seed
-rails s
+bin/rails db:prepare
+bin/rails s
 ```
 
 ### フロントエンド
+
+`Ippuku/frontend` で実行します。
+
 ```bash
-cd Ippuku/frontend
-npm install
+npm ci
 npm run dev
 ```
 
