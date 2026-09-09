@@ -138,6 +138,45 @@ git clone https://github.com/Deku-toshi/Ippuku.git
 cd Ippuku
 ```
 
+### PostgreSQLの準備
+
+未導入の場合はインストールします。`libpq-dev` は pg gem のビルドに必要です。
+
+```bash
+sudo apt install postgresql libpq-dev
+```
+
+PostgreSQLを起動します。
+
+```bash
+sudo service postgresql start
+```
+
+アプリが接続するロールを作成します。データベースの作成権限が必要なため `--createdb` を付けています。実行するとパスワードの入力を求められます。
+
+```bash
+sudo -u postgres createuser --createdb --pwprompt <任意のユーザー名>
+```
+
+ここで指定したユーザー名とパスワードを、次の環境変数の設定で使用します。
+
+### Google Maps APIキーとMap IDの取得
+
+地図の表示に Google Maps Platform を使用しています。以下を各自で取得してください。
+
+- Google Cloud プロジェクトを作成する
+- Maps JavaScript API を有効化しAPIキーを発行する
+- Map ID を作成する
+
+マーカーの表示に Map ID が必要です。ベクターマップで動作を確認しています。
+
+APIキーはブラウザから参照できる形で読み込まれるため、ウェブサイトの制限をかけてください。
+登録するURLは、フロントエンドを起動したアドレスに合わせてください。
+
+- [プロジェクトの作成] https://console.cloud.google.com/projectcreate
+- [Maps JavaScript API を有効化しAPIキーを発行] https://console.cloud.google.com/apis/library/maps-backend.googleapis.com
+- [Map ID の作成] https://console.cloud.google.com/projectselector2/google/maps-apis/studio/maps?organizationId=0&supportedpurview=project
+
 ### 環境変数の設定
 
 **バックエンド**（`Ippuku/.env.local`）
