@@ -26,10 +26,10 @@ export const TobaccoTypeFilter = ({ params, setParams }: TobaccoTypeProps) => {
                 setParams({electronicOnly: true});
               };
             }}
-            aria-pressed={isActive} className={isActive ? "button button--active" : "button"}>
-            {option.key === "paper" 
-              ? <span>{option.icon} {option.label}</span> 
-              : <span><img src={option.icon} alt="電子タバコ" className="button-icon" />{option.label}</span>}
+            aria-pressed={isActive} className={isActive ? "filter-button filter-button--active" : "filter-button"}>
+            {option.key === "paper"
+              ? <span>{option.icon} {option.label}</span>
+              : <span><img src={option.icon} alt="電子タバコ" className="filter-button-icon" />{option.label}</span>}
           </button>
         );
       })}
