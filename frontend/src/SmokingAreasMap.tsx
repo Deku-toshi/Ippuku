@@ -1,9 +1,9 @@
 import { APIProvider, Map, AdvancedMarker, MapControl, ControlPosition, useMap } from "@vis.gl/react-google-maps";
-import { TobaccoTypeFilter } from "./TobaccoTypeFilter";
+import { LocateFixed, Maximize, Minimize } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { formatSelectedTobaccoTypes } from "./features/smokingAreas/formatSelectedTobaccoTypes";
 import { useTobaccoTypes } from "./features/smokingAreas/hooks/useTobaccoTypes";
-import { useEffect, useRef, useState } from "react";
-import { LocateFixed, Maximize, Minimize } from "lucide-react";
+import { TobaccoTypeFilter } from "./TobaccoTypeFilter";
 import type { SmokingAreaDisplay, SmokingAreaSearchParams } from "./features/smokingAreas/types";
 import type { FetchState } from "./types/fetchState";
 

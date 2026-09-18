@@ -1,8 +1,8 @@
-import type { SmokingAreaDisplay, SmokingAreaSearchParams } from "../types";
-import type { FetchState } from "../../../types/fetchState";
-import { fetchSmokingAreas } from "../../../api/smokingAreas/client";
 import { useEffect, useState } from "react";
+import { fetchSmokingAreas } from "../../../api/smokingAreas/client";
 import { toError } from "./toError";
+import type { FetchState } from "../../../types/fetchState";
+import type { SmokingAreaDisplay, SmokingAreaSearchParams } from "../types";
 
 type UseSmokingAreasResult = {
   state: FetchState<SmokingAreaDisplay[]>;
