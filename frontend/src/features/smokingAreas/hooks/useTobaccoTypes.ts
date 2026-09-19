@@ -1,8 +1,8 @@
-import type { TobaccoType } from "../../../features/smokingAreas/types";
 import { useState, useEffect } from "react";
 import { fetchTobaccoTypes } from "../../../api/tobaccoTypes/client";
-import type { FetchState } from "../../../types/fetchState";
 import { toError } from "./toError";
+import type { TobaccoType } from "../../../features/smokingAreas/types";
+import type { FetchState } from "../../../types/fetchState";
 
 type UseTobaccoTypesResult = {
   state: FetchState<TobaccoType[]>;

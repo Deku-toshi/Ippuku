@@ -1,9 +1,9 @@
 import { APIProvider, Map, AdvancedMarker, MapControl, ControlPosition, useMap } from "@vis.gl/react-google-maps";
-import { TobaccoTypeFilter } from "./TobaccoTypeFilter";
+import { LocateFixed, Maximize, Minimize } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { formatSelectedTobaccoTypes } from "./features/smokingAreas/formatSelectedTobaccoTypes";
 import { useTobaccoTypes } from "./features/smokingAreas/hooks/useTobaccoTypes";
-import { useEffect, useRef, useState } from "react";
-import { LocateFixed, Maximize, Minimize } from "lucide-react";
+import { TobaccoTypeFilter } from "./TobaccoTypeFilter";
 import type { SmokingAreaDisplay, SmokingAreaSearchParams } from "./features/smokingAreas/types";
 import type { FetchState } from "./types/fetchState";
 
@@ -61,18 +61,6 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
     return null;
   };
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 1025);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
-    });
-  }, []);
-
   const getSelectedSmokingArea = (): SmokingAreaDisplay | null => {
     if (selectedId === null) return null;
     if (smokingAreasState.status !== "success") return null;
@@ -86,6 +74,18 @@ export const SmokingAreasMap = ({ smokingAreasState, selectedId, setSelectedId, 
       mapContainerRef.current?.requestFullscreen();
     }
   };
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1025);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
+    });
+  }, []);
 
   useEffect(() => {
     const handleFullscreenChange = () => setIsFullscreen(Boolean(document.fullscreenElement))

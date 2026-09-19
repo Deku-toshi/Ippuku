@@ -1,5 +1,5 @@
-import type { TobaccoType } from "../../features/smokingAreas/types";
 import type { ApiTobaccoType } from "./schema";
+import type { TobaccoType } from "../../features/smokingAreas/types";
 
 export const toTobaccoType = (api: ApiTobaccoType): TobaccoType => {
   return {
