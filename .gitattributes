@@ -1,5 +1,12 @@
 # See https://git-scm.com/docs/gitattributes for more about git attribute files.
 
+# Normalize line endings to LF for all text files.
+* text=auto eol=lf
+
+# Mark image files as binary so they are not normalized.
+*.png binary
+*.ico binary
+
 # Mark the database schema as having been generated.
 db/schema.rb linguist-generated
 
