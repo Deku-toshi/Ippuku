@@ -1,4 +1,4 @@
-export type FetchState<T> = 
+export type FetchState<T> =
   | { status: "loading" }
   | { status: "success"; data: T }
-  | { status: "error"; error: Error};
+  | { status: "error"; error: Error };

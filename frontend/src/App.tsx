@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSmokingAreas } from "./features/smokingAreas/hooks/useSmokingAreas";
 import { SmokingAreasMap } from "./SmokingAreasMap";
-import type { SmokingAreaSearchParams } from "./features/smokingAreas/types"
+import type { SmokingAreaSearchParams } from "./features/smokingAreas/types";
 
 export default function App() {
-  const [ params, setParams ] = useState<SmokingAreaSearchParams>({});
-  const [ selectedId, setSelectedId ] = useState<number | null>(null);
+  const [params, setParams] = useState<SmokingAreaSearchParams>({});
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const { state, refetch } = useSmokingAreas(params);
 

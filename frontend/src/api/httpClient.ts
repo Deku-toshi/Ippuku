@@ -7,7 +7,8 @@ export type HttpRequestOptions = {
   query?: QueryParams;
 };
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || window.location.origin;
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || window.location.origin;
 
 const buildUrl = (path: string, query?: QueryParams): string => {
   const urlObj = new URL(path, API_BASE_URL);
@@ -16,7 +17,7 @@ const buildUrl = (path: string, query?: QueryParams): string => {
     Object.entries(query).forEach(([key, value]) => {
       if (value === undefined) return;
       urlObj.searchParams.set(key, String(value));
-    })
+    });
   }
 
   return urlObj.toString();

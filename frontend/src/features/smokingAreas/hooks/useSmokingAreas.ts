@@ -9,8 +9,12 @@ type UseSmokingAreasResult = {
   refetch: () => Promise<void>;
 };
 
-export const useSmokingAreas = (params?: SmokingAreaSearchParams): UseSmokingAreasResult => {
-  const [state, setState] = useState<FetchState<SmokingAreaDisplay[]>>({ status: "loading" });
+export const useSmokingAreas = (
+  params?: SmokingAreaSearchParams,
+): UseSmokingAreasResult => {
+  const [state, setState] = useState<FetchState<SmokingAreaDisplay[]>>({
+    status: "loading",
+  });
 
   const refetch = async () => {
     setState({ status: "loading" });

@@ -3,7 +3,11 @@ export const toError = (e: unknown): Error => {
     return e;
   } else if (e == null) {
     return new Error("Unknown error");
-  } else if (typeof e === "string" || typeof e === "number" || typeof e === "boolean") {
+  } else if (
+    typeof e === "string" ||
+    typeof e === "number" ||
+    typeof e === "boolean"
+  ) {
     return new Error(String(e));
   } else if (typeof e === "object") {
     const maybeMessageObject = e as { message?: unknown };
