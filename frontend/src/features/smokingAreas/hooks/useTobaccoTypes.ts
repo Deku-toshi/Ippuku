@@ -10,7 +10,9 @@ type UseTobaccoTypesResult = {
 };
 
 export const useTobaccoTypes = (): UseTobaccoTypesResult => {
-  const [state, setState] = useState<FetchState<TobaccoType[]>>({ status: "loading" })
+  const [state, setState] = useState<FetchState<TobaccoType[]>>({
+    status: "loading",
+  });
 
   const refetch = async () => {
     setState({ status: "loading" });

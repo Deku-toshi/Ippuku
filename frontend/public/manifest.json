@@ -12,6 +12,6 @@
   "display": "standalone",
   "background_color": "#1B3A5C",
   "theme_color": "#1B3A5C",
-  "orientation" : "portrait",
-  "lang" : "ja"
+  "orientation": "portrait",
+  "lang": "ja"
 }
