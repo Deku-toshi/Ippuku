@@ -1,5 +1,7 @@
 # 一服 🚬
 
+![一服のイメージ画像（PCとスマホで地図と喫煙所を表示した画面）](frontend/public/Ippuku_ogp.png)
+
 サービスURL：https://ippuku.onrender.com
 
 ### 喫煙者が位置情報を活用して喫煙所を検索できるアプリケーション
