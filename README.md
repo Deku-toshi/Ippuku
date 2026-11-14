@@ -102,6 +102,10 @@ Railsとの親和性の高さからPostgreSQLを採用しました。
 
 zodはAPIレスポンスの検証のために採用しました。TypeScriptの型はコンパイル時のもので、実際にAPIから返ってきた値が想定どおりの型かどうかは実行時に検証しない限り分からず、想定外の型のまま画面に表示せずエラーとして扱えるようにしています。
 
+## インフラ構成図
+
+![インフラ構成図](docs/images/infra-diagram.png)
+
 ## ER図
 
 ![ER図](docs/images/er-diagram.png)
